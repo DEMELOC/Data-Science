@@ -18,3 +18,9 @@ df.drop(['First Name', 'Last Name', 'Email Address'], inplace=True, axis=1, erro
 df.head()
 df.info()
 input("Press Enter to continue")
+
+# Adding random ID column
+df.reset_index(inplace=True)
+df.rename(columns={'index':'id'}, inplace=True)
+df.info()
+input("Press Enter to continue")
