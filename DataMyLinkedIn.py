@@ -24,3 +24,8 @@ df.reset_index(inplace=True)
 df.rename(columns={'index':'id'}, inplace=True)
 df.info()
 input("Press Enter to continue")
+
+# Fuction ID = 8 characters
+def get_id():
+  id = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(8))
+  return id
