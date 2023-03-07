@@ -8,31 +8,35 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from wordcloud import WordCloud
 
-df = pd.read_csv('Connections.csv')
-df.info()
+df_file = pd.read_csv('Connections.csv')
+df_file.info()
 input("Press Enter to continue")
 
 # GPDR / LDPG requirement, keeping sensible data hidden
-assert isinstance(df, object)
-df.drop(['First Name', 'Last Name', 'Email Address'], inplace=True, axis=1, errors = 'ignore')
-df.head()
-df.info()
+assert isinstance(df_file, object)
+df_file.drop(['First Name', 'Last Name', 'Email Address'], inplace=True, axis=1)
+print(df_file)
 input("Press Enter to continue")
 
-# Adding random ID column
-df.reset_index(inplace=True)
-df.rename(columns={'index':'Id'}, inplace=True)
-df.info()
+# Adding random id number column
+df_file.reset_index(inplace=True)
+df_file.rename(columns={'index':'Number'}, inplace=True)
+print(df_file)
 input("Press Enter to continue")
 
-# Fuction ID = 8 charecters
+# Fuction to create a randomic id number with 8 characteres
 def get_id():
-  Id = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(8))
-  return Id
+  Number = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for r in range(8))
+  return Number
+print(df_file)
+input("Press Enter to continue")
 
-# Printing all columns of the dataframe
-print(df.columns.tolist())
+# Setting the id numbers with get_id fuction
+for r in range(df_file.shape[0]):
+  df_file['Number'].iloc._setitem_with_indexer(r, get_id())
 
-# Setting ID with get_id function
-for r in range(df.shape[0]):
-  df[get_id].iloc._setitem_with_indexer(r, get_id())
+#Checking total number of connections
+df_file.shape[0]
+input("Press Enter to continue")
+
+df_file.head()
